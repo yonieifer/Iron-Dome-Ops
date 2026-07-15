@@ -32,3 +32,8 @@ const changeStatus = async (status) => {
     const is_updated = await update("incidents", {status: status})
     return is_updated
 }
+
+const showAllIncidents = async () => {
+    const allIncidents = await get("incidents", {})
+    return allIncidents
+}

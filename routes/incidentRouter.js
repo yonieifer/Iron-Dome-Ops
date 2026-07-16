@@ -4,7 +4,7 @@ import { createIncident, changeStatus, getAllIncidents } from "../controllers/in
 
 const router = express.Router()
 
-router.post("", createIncident)
+router.post("/", createIncident)
 
 router.patch("/:id/status", changeStatus)
 

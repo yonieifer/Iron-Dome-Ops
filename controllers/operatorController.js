@@ -1,6 +1,10 @@
 import * as operatorService from "../services/operatorService.js"
 export const createOperator = async (req, res) => {
-    const {name, rank} = req.body
-    const id = await operatorService.createOperator({name: name, rank: rank})
-    res.statusCode(201).send(`created | id: ${id}`)
+    try {
+        const {name, level} = req.body
+    const id = await operatorService.createOperator({name: name, level: level})
+    res.status(201).send(`created | id: ${id}`)
+    } catch (error) {
+        console.log(error);
+    }
 }

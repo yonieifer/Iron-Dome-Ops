@@ -2,7 +2,7 @@ import { create, get, update, remove } from "../repositories/baseRepo.js";
 import { findOperatorById } from "../utils/utils.js";
 
 
-const createIncident = async (data) => {
+export const createIncident = async (data) => {
     const {codeName, threatLevel, operatorId} = data
 
     if (!["RED SKY", "BLACK FALCON", "IRON SHIELD", "NIGHT ARROW", "SILENT DOME"].includes(codeName)) {
@@ -25,7 +25,7 @@ const createIncident = async (data) => {
     return newId
 }
 
-const changeStatus = async (status, id) => {
+export const changeStatus = async (status, id) => {
     if (!["TRACKING", "INTERCEPTED", "CLOSED"].includes(status)) {
         throw new Error("invalid status")
     }
@@ -33,7 +33,7 @@ const changeStatus = async (status, id) => {
     return is_updated
 }
 
-const showAllIncidents = async () => {
+export const showAllIncidents = async () => {
     const allIncidents = await get("incidents", {})
     return allIncidents
 }

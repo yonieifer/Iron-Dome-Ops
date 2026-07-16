@@ -6,7 +6,7 @@ export const createIncident = async (req, res) => {
     res.statusCode(201).send(`created | id: ${id}`)
 }
 
-const changeStatus = async (req, res) => {
+export const changeStatus = async (req, res) => {
     const status = req.body.status
     const id = req.params.id
     const is_updated = await incidentsService.changeStatus({status: status}, {id: id})
@@ -15,7 +15,7 @@ const changeStatus = async (req, res) => {
     }
 }
 
-const getAllIncidents = async (req, res) => {
+export const getAllIncidents = async (req, res) => {
     const all = await incidentsService.showAllIncidents()
     res.send(all)
 }

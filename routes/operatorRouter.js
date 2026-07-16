@@ -1,5 +1,5 @@
 import express from "express"
-import { createOperator } from "../controllers/operatorController"
+import { createOperator } from "../controllers/operatorController.js"
 
 const router = express.Router()
 

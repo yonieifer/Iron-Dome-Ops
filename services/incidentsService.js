@@ -25,11 +25,11 @@ const createIncident = async (data) => {
     return newId
 }
 
-const changeStatus = async (status) => {
+const changeStatus = async (status, id) => {
     if (!["TRACKING", "INTERCEPTED", "CLOSED"].includes(status)) {
         throw new Error("invalid status")
     }
-    const is_updated = await update("incidents", {status: status})
+    const is_updated = await update("incidents", {status: status}, {id: id})
     return is_updated
 }
 

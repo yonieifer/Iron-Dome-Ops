@@ -1,8 +1,11 @@
 import express from "express"
-import { createOperator } from "../controllers/operatorController.js"
+import { createOperator, getAllOperators } from "../controllers/operatorController.js"
 
 const router = express.Router()
 
-router.post("", createOperator)
+router.post("/", createOperator)
+
+router.get("/", getAllOperators)
+
 
 export default router

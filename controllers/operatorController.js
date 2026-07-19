@@ -1,4 +1,6 @@
 import * as operatorService from "../services/operatorService.js"
+import { get } from "../repositories/baseRepo.js"
+
 export const createOperator = async (req, res) => {
     try {
         const {name, level} = req.body
@@ -7,4 +9,9 @@ export const createOperator = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+export const getAllOperators = async (req, res) => {
+    const all = await get("operators")
+    res.send(all)
 }

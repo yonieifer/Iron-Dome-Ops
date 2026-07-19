@@ -12,7 +12,7 @@ export const create = async (tableName, data) => {
     return newId
 }
 
-export const get = async (tableName, filter) => {
+export const get = async (tableName, filter = {}) => {
     const keys = Object.keys(filter)
     const values = Object.values(filter)
     let whereClause = ""

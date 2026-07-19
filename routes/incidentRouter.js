@@ -1,5 +1,5 @@
 import express from "express"
-import { createIncident, changeStatus, getAllIncidents } from "../controllers/incidentController.js"
+import { createIncident, changeStatus, getOpenIncidents } from "../controllers/incidentController.js"
 
 
 const router = express.Router()
@@ -8,6 +8,6 @@ router.post("/", createIncident)
 
 router.patch("/:id/status", changeStatus)
 
-router.get("/open", getAllIncidents)
+router.get("/open", getOpenIncidents)
 
 export default router

@@ -34,7 +34,7 @@ export const changeStatus = async (status, id) => {
     return is_updated
 }
 
-export const showAllIncidents = async () => {
-    const allIncidents = await get("incidents", {})
-    return allIncidents
+export const showOpenIncidents = async () => {
+    const allOpenIncidents = await get("incidents", {status: "OPEN"})
+    return allOpenIncidents
 }

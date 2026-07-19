@@ -3,9 +3,8 @@ import * as incidentsService from "../services/incidentsService.js"
 export const createIncident = async (req, res, next) => {
     try {
         const {code_name, threat_level, operator_id} = req.body
-        
-    const id = await incidentsService.createIncident({code_name: code_name, threat_level: threat_level, operator_id: operator_id})
-    res.status(201).send(`created | id: ${id}`)
+        const id = await incidentsService.createIncident({code_name: code_name, threat_level: threat_level, operator_id: operator_id})
+        res.status(201).send(`created | id: ${id}`)
     } catch (error) {
         next(error);
     }
@@ -24,10 +23,10 @@ export const changeStatus = async (req, res, next) => {
     }
 }
 
-export const getAllIncidents = async (req, res, next) => {
+export const getOpenIncidents = async (req, res, next) => {
     try {
-        const all = await incidentsService.showAllIncidents()
-        res.send(all)
+        const open = await incidentsService.showOpenIncidents()
+        res.send(open)
     } catch (error) {
         next(error)
     }

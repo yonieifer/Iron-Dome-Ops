@@ -15,9 +15,10 @@ export const changeStatus = async (req, res, next) => {
         const status = req.body.status
         const id = req.params.id
         const is_updated = await incidentsService.changeStatus(status, id)
-        if (is_updated) {
-            res.send(`status changed: ${status}`)
+        if (!is_updated) {
+            throw new Error("cannot update status")
         }
+        res.send(`status changed: ${status}`)
     } catch (error) {
         next(error)
     }

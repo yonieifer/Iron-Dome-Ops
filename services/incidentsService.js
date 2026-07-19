@@ -1,5 +1,6 @@
 import { create, get, update, remove } from "../repositories/baseRepo.js";
 import { findOperatorById } from "../utils/utils.js";
+import writeLog from "./logService.js";
 
 
 export const createIncident = async (data) => {
@@ -23,6 +24,7 @@ export const createIncident = async (data) => {
         operator_id: operator_id
     }
     const newId = await create("incidents", incidentData)
+    await writeLog("INCIDENT_CREATED", newId, operator_id, "New incident created")
     return newId
 }
 
@@ -30,7 +32,12 @@ export const changeStatus = async (status, id) => {
     if (!["TRACKING", "INTERCEPTED", "CLOSED"].includes(status)) {
         throw new Error("invalid status")
     }
+    const [incident] = await get("incidents", {id: id});
+    if (!incident) {
+        throw new Error("Incident not found");
+    }
     const is_updated = await update("incidents", {status: status}, {id: id})
+    await writeLog("STATUS_UPDATED", id, incident.operator_id, `Status changed to ${status}`)
     return is_updated
 }
 

@@ -10,10 +10,16 @@ app.use("/", (req, res, next) => {
     next()
 })
 
+
 app.use(express.json())
 
 app.use("/operators", operatorRouter)
 
 app.use("/incidents", incidentRouter)
+
+app.use("", (err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send("server internal error")
+})
 
 app.listen(process.env.PORT, () => console.log("listening..."))

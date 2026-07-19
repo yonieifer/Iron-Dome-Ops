@@ -11,7 +11,11 @@ export const createOperator = async (req, res, next) => {
     }
 }
 
-export const getAllOperators = async (req, res) => {
-    const all = await get("operators")
-    res.send(all)
+export const getAllOperators = async (req, res, next) => {
+    try {
+        const all = await get("operators")
+        res.send(all)
+    } catch (error) {
+        next(error)
+    }
 }

@@ -24,7 +24,11 @@ export const changeStatus = async (req, res, next) => {
     }
 }
 
-export const getAllIncidents = async (req, res) => {
-    const all = await incidentsService.showAllIncidents()
-    res.send(all)
+export const getAllIncidents = async (req, res, next) => {
+    try {
+        const all = await incidentsService.showAllIncidents()
+        res.send(all)
+    } catch (error) {
+        next(error)
+    }
 }

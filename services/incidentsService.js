@@ -3,23 +3,27 @@ import { findOperatorById } from "../utils/utils.js";
 
 
 export const createIncident = async (data) => {
-    const {codeName, threatLevel, operatorId} = data
-
-    if (!["RED SKY", "BLACK FALCON", "IRON SHIELD", "NIGHT ARROW", "SILENT DOME"].includes(codeName)) {
+    const {code_name, threat_level, operator_id} = data
+    
+    if (!["RED SKY", "BLACK FALCON", "IRON SHIELD", "NIGHT ARROW", "SILENT DOME"].includes(code_name)) {
         throw new Error("invalid code name")
     }
-    if (!["LOW", "MEDIUM", "HIGH", "CRITICAL"].includes(threatLevel)) {
+    if (!["LOW", "MEDIUM", "HIGH", "CRITICAL"].includes(threat_level)) {
         throw new Error("invalid threat level")
     }
-    const operator = await findOperatorById(operatorId)
+    const operator = await findOperatorById(+operator_id)
+    console.log(operator);
+    
     if (!operator) {
-        throw new Error(`no operator ${operatorId}`)
+        console.log(operator);
+        
+        throw new Error(`no operator ${operator_id}`)
     }
     const incidentData = {
-        codeName: codeName,
-        threatLevel: threatLevel,
+        code_name: code_name,
+        threat_level: threat_level,
         status: "OPEN",
-        operatorId: operatorId
+        operator_id: operator_id
     }
     const newId = await create("incidents", incidentData)
     return newId

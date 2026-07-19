@@ -1,6 +1,6 @@
-import { create } from "../repositories/baseRepo"
+import { create } from "../repositories/baseRepo.js"
 
-export default (action, incident_id, operator_id, description,) => {
+export default async (action, incident_id, operator_id, description,) => {
     await create("logs", {
         action: action,
         incident_id: incident_id,

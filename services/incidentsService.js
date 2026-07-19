@@ -12,11 +12,8 @@ export const createIncident = async (data) => {
         throw new Error("invalid threat level")
     }
     const operator = await findOperatorById(+operator_id)
-    console.log(operator);
     
     if (!operator) {
-        console.log(operator);
-        
         throw new Error(`no operator ${operator_id}`)
     }
     const incidentData = {
